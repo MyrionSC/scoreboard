@@ -1,0 +1,12 @@
+
+
+
+client
+  admin page layout
+  score page temp layout
+
+
+server
+  read from / write to file
+  socket io
+
