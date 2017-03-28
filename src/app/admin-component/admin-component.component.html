@@ -1,6 +1,28 @@
-<p>
-  admin-component works!
-</p>
-<button (click)="changeScore()">
-  send some data!
+<h3>
+  Administration for NIH Special Olympics Scoreboard
+</h3>
+
+<div style="width: 600px;">
+  <div style="display: flex">
+    <div style="width: 200px;">Aktivitet</div>
+    <div style="width: 200px;">Hold</div>
+    <div style="width: 200px;">Tid</div>
+  </div >
+  <div style="height: 2px; background: black"></div>
+  <div *ngFor="let s of score;">
+    <div style="display: flex; margin-top: 10px;">
+      <input class="AdminTextBox" [(ngModel)]="s.activity" type="text">
+      <input class="AdminTextBox" [(ngModel)]="s.team" type="text">
+      <input class="AdminTextBox" [(ngModel)]="s.time" type="text">
+    </div>
+  </div>
+</div>
+
+<div style="margin: 20px"></div>
+
+<button class="AdminButton" (click)="saveScore()">
+  Gem
+</button>
+<button class="AdminButton" (click)="revertChanges()">
+  fortryd ændring
 </button>
