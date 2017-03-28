@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AdminComponentComponent } from './admin-component/admin-component.component';
 import {Routes, RouterModule } from "@angular/router";
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { SocketService } from './socket.service'
 
 const appRoutes: Routes = [
   { path: 'scoreboard', component:  ScoreboardComponent},
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

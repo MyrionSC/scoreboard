@@ -1,3 +1,8 @@
 <p>
   scoreboard works!
 </p>
+<ul>
+  <li *ngFor="let s of score;">
+    activity: {{s.activity}} - team: {{s.team}} - time: {{s.time}}
+  </li>
+</ul>

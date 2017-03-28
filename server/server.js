@@ -14,25 +14,16 @@ var score = [
   {
     "activity": "længdespring",
     "team": "hold1",
-    "time": 90
-  },
-  {
-    "activity": "vikingespil",
-    "team": "hold2",
-    "time": 32
-  },
-  {
-    "activity": "svømning",
-    "team": "hold3",
-    "time": 42
+    "time": 40
   },
   {
     "activity": "blah",
     "team": "hold4",
-    "time": 80.234
+    "time": 30.234
   }
 ];
 
+//// express
 app.use(function(req, res, next){
   // if the request is not html then move along
   var accept = req.accepts('html', 'json', 'xml');
@@ -50,32 +41,25 @@ app.use(function(req, res, next){
   res.sendFile(staticRoot + 'index.html');
 });
 
-// express
-// app.get('/', function(req, res) {
-//   // console.log("user connected");
-//   res.sendFile('index.html');
-// });
-// app.get('/admin', function(req, res) {
-//   console.log("admin connected");
-//   res.sendFile('admin.html');
-// });
-// app.get('/score', function (req, res) {
-//   console.log("score request gotten");
-//   res.send(score);
-// });
 
-// socket.io
+//// socket.io
 io.on('connection', function(socket){
   console.log('a socket connected');
-  socket.emit('score_change', score);
+  socket.emit('score_change', score); // init scoreboard client with current score
+
+  socket.on('new_score', function(new_score){
+    score = new_score;
+
+    // save to file
 
 
 
+    console.log("new score. Score is now:\n");
+    print_score();
+    console.log("\n");
 
-
-  socket.on('something', function(data){
-    // io.emit('score_change', score);
-    console.log(data);
+    // emit to scoreboard clients
+    io.emit('score_change', new_score);
   });
 
   socket.on('disconnect', function(){
@@ -85,14 +69,18 @@ io.on('connection', function(socket){
 
 http.listen(app.get('port'), function() {
   console.log('app running on port', app.get('port'));
+  print_score();
 });
 
+var print_score = function () {
+  for (var i = 0; i < score.length; i++) {
+    var s = score[i];
 
+    console.log("\n");
+    console.log(s.activity);
+    console.log(s.team);
+    console.log(s.time);
+  }
+};
 
-// middleware example
-// app.use(function (req, res, next) {
-//   console.log('Time:', Date.now());
-//   next();
-// });
-
-
+// on startup
