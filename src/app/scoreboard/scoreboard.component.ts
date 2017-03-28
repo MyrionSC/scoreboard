@@ -8,19 +8,7 @@ import { SocketService } from '../socket.service';
   providers: [SocketService]
 })
 export class ScoreboardComponent implements OnInit, OnDestroy {
-  score: Array<any> = [
-    {
-      "activity": "læncxcvxcvpring",
-      "team": "ddd",
-      "time": 4033
-    },
-    {
-      "activity": "ggggggggggggggggggg",
-      "team": "ccbbb",
-      "time": 34.234
-    }
-  ];
-
+  score: Array<any>;
 
   constructor(private socketService: SocketService) {
   }
@@ -29,33 +17,10 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     this.socketService.on('score_change', (new_score) => {
       console.log("score change received from server:\n");
       console.log(new_score);
-      this.score = new_score;
+      // somehow angular doesn't understand that json loaded from a file is an array, so eval() has to be used then
+      this.score = new_score instanceof Array ? new_score : eval(new_score);
     });
-    // setTimeout(() => {
-    //   console.log("updating view hopefully");
-    //   this.change_score();
-    // }, 3000);
   }
-
-  // change_score(new_score: any) {
-  //   console.log("score change received from server:\n");
-  //   console.log(new_score);
-  //   this.score = new_score;
-  //   this.cdref.detectChanges();
-  //   // this.score = [
-  //   //   {
-  //   //     "activity": "længdespring",
-  //   //     "team": "hold1",
-  //   //     "time": 40
-  //   //   },
-  //   //   {
-  //   //     "activity": "blah",
-  //   //     "team": "hold4",
-  //   //     "time": 30.234
-  //   //   }
-  //   // ];
-  // }
-
   ngOnDestroy() {
     this.socketService.off('score_change');
   }

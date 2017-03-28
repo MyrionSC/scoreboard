@@ -4,24 +4,15 @@ var express = require('express'),
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var util = require('util');
 
 var staticRoot = __dirname + '/';
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(staticRoot));
 
-// test data
-var score = [
-  {
-    "activity": "længdespring",
-    "team": "hold1",
-    "time": 40
-  },
-  {
-    "activity": "blah",
-    "team": "hold4",
-    "time": 30.234
-  }
-];
+// read score data into memory, if file exists
+var score = fs.existsSync(staticRoot + "score.json") ?
+  JSON.parse(fs.readFileSync(staticRoot + "score.json", 'utf8')) : createScoreFile();
 
 //// express
 app.use(function(req, res, next){
@@ -51,12 +42,10 @@ io.on('connection', function(socket){
     score = new_score;
 
     // save to file
+    fs.writeFileSync(staticRoot +'/score.json', JSON.stringify(score) , 'utf-8');
 
-
-
-    console.log("new score. Score is now:\n");
-    print_score();
-    console.log("\n");
+    // console.log("new score. Score is now:\n");
+    // print_score();
 
     // emit to scoreboard clients
     io.emit('score_change', new_score);
@@ -67,20 +56,50 @@ io.on('connection', function(socket){
   });
 });
 
+
+
+//// helper functions
+function createScoreFile() {
+  var tempScoreData = [
+    {
+      "activity": "aktivitet1",
+      "team": "hold1",
+      "time": 10
+    },
+    {
+      "activity": "aktivitet2",
+      "team": "hold2",
+      "time": 20
+    },
+    {
+      "activity": "aktivitet3",
+      "team": "hold3",
+      "time": 30
+    },
+    {
+      "activity": "aktivitet4",
+      "team": "hold4",
+      "time": 40
+    }
+  ];
+  fs.writeFileSync(staticRoot +'score.json', JSON.stringify(tempScoreData) , 'utf-8');
+  return tempScoreData;
+}
+
+// var print_score = function () {
+//   for (var i = 0; i < score.length; i++) {
+//     var s = score[i];
+//
+//     console.log(s.activity);
+//     console.log(s.team);
+//     console.log(s.time);
+//   }
+// };
+
+
+
+//// on startup
 http.listen(app.get('port'), function() {
   console.log('app running on port', app.get('port'));
-  print_score();
+  // print_score();
 });
-
-var print_score = function () {
-  for (var i = 0; i < score.length; i++) {
-    var s = score[i];
-
-    console.log("\n");
-    console.log(s.activity);
-    console.log(s.team);
-    console.log(s.time);
-  }
-};
-
-// on startup
