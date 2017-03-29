@@ -1,8 +1,8 @@
 .AdminTextBox {
   width: 200px;
   margin: 5px;
-  border: transparent 0;
-  padding: 5px;
+  /*border: gray 2px;*/
+  padding: 7px;
 }
 .AdminButton {
   margin-left: 20px;

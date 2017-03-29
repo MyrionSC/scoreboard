@@ -18,7 +18,7 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
       console.log("score change received from server:\n");
       console.log(new_score);
       // somehow angular doesn't understand that json loaded from a file is an array, so eval() has to be used then
-      this.score = new_score instanceof Array ? new_score : eval(new_score);
+      this.score = new_score;
     });
   }
   ngOnDestroy() {

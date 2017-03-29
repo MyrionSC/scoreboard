@@ -12,7 +12,7 @@ app.use(express.static(staticRoot));
 
 // read score data into memory, if file exists
 var score = fs.existsSync(staticRoot + "score.json") ?
-  JSON.parse(fs.readFileSync(staticRoot + "score.json", 'utf8')) : createScoreFile();
+  eval(JSON.parse(fs.readFileSync(staticRoot + "score.json", 'utf8'))) : createScoreFile();
 
 //// express
 app.use(function(req, res, next){
@@ -39,13 +39,13 @@ io.on('connection', function(socket){
   socket.emit('score_change', score); // init scoreboard client with current score
 
   socket.on('new_score', function(new_score){
+    console.log("new score received from admin:");
+    console.log(JSON.stringify(new_score));
+
     score = new_score;
 
     // save to file
     fs.writeFileSync(staticRoot +'/score.json', JSON.stringify(score) , 'utf-8');
-
-    // console.log("new score. Score is now:\n");
-    // print_score();
 
     // emit to scoreboard clients
     io.emit('score_change', new_score);
