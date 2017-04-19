@@ -1,12 +1,8 @@
 
 
-
 client
-  admin page layout
   score page temp layout
+  test bootstrap style elements for layout
 
 
 server
-  read from / write to file
-  socket io
-

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AdminComponentComponent } from './admin-component/admin-component.component';
@@ -12,7 +13,8 @@ import { SocketService } from './socket.service'
 const appRoutes: Routes = [
   { path: 'scoreboard', component:  ScoreboardComponent},
   { path: 'admin', component: AdminComponentComponent },
-  { path: '', redirectTo: '/scoreboard', pathMatch: 'full' }
+  { path: '', redirectTo: '/scoreboard', pathMatch: 'full' },
+  { path: '**', redirectTo: '/scoreboard', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -23,6 +25,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
+    AlertModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule
