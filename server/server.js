@@ -64,22 +64,22 @@ function createScoreFile() {
     {
       "activity": "aktivitet1",
       "team": "hold1",
-      "time": 10
+      "time": "10"
     },
     {
       "activity": "aktivitet2",
       "team": "hold2",
-      "time": 20
+      "time": "10"
     },
     {
       "activity": "aktivitet3",
       "team": "hold3",
-      "time": 30
+      "time": "10"
     },
     {
       "activity": "aktivitet4",
       "team": "hold4",
-      "time": 40
+      "time": "10"
     }
   ];
   fs.writeFileSync(staticRoot +'score.json', JSON.stringify(tempScoreData) , 'utf-8');

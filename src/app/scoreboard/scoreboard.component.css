@@ -1,0 +1,26 @@
+.header {
+  margin: 10px;
+  margin-left: 30px;
+  padding: 5px;
+  display: inline-flex;
+}
+.contentContainer {
+  margin: 15px;
+  /*padding: 10px;*/
+  border: 1px black solid;
+}
+.contentHeader {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 8px;
+  background: #000;
+}
+.contentHeaderText {
+  color: white;
+}
+.contentRow {
+  padding: 10px;
+}
+.content {
+  font-size: 22px;
+}
