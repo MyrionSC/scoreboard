@@ -4,9 +4,9 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "b": "ng build && cp server/* dist/",
-    "bn": "ng build && cp server/* dist/ && (node dist/server.js || node server.js)",
-    "p": "ng build && cp server/* dist/ && scp ~/code/scoreboard/dist/* pi@marand.dk:/home/pi/code/scoreboard/",
+    "b": "ng build && cp -r server/* dist/",
+    "bn": "ng build && cp -r server/* dist/ && (node dist/server.js || node server.js)",
+    "p": "ng build && cp -r server/* dist/ && scp -r ~/code/scoreboard/dist/* pi@marand.dk:/home/pi/code/scoreboard/",
     "ng": "ng",
     "start": "ng serve",
     "lint": "tslint \"src/**/*.ts\" --project src/tsconfig.json --type-check && tslint \"e2e/**/*.ts\" --project e2e/tsconfig.json --type-check",
