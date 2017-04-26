@@ -36,7 +36,7 @@ app.use(function(req, res, next){
 //// socket.io
 io.on('connection', function(socket){
   console.log('a socket connected');
-  socket.emit('score_change', score); // init scoreboard client with current score
+  socket.emit('score_init', score); // init scoreboard client with current score
 
   socket.on('new_score', function(new_score){
     console.log("new score received from admin:");
@@ -60,28 +60,35 @@ io.on('connection', function(socket){
 
 //// helper functions
 function createScoreFile() {
-  var tempScoreData = [
-    {
-      "activity": "aktivitet1",
-      "team": "hold1",
-      "time": "10"
-    },
-    {
-      "activity": "aktivitet2",
-      "team": "hold2",
-      "time": "10"
-    },
-    {
-      "activity": "aktivitet3",
-      "team": "hold3",
-      "time": "10"
-    },
-    {
-      "activity": "aktivitet4",
-      "team": "hold4",
-      "time": "10"
-    }
-  ];
+  // var tempScoreData = [
+  //   {
+  //     "activity": "aktivitet1",
+  //     "team": "hold1",
+  //     "time": "10"
+  //   },
+  //   {
+  //     "activity": "aktivitet2",
+  //     "team": "hold2",
+  //     "time": "10"
+  //   },
+  //   {
+  //     "activity": "aktivitet3",
+  //     "team": "hold3",
+  //     "time": "10"
+  //   },
+  //   {
+  //     "activity": "aktivitet4",
+  //     "team": "hold4",
+  //     "time": "10"
+  //   }
+  // ];
+
+  var tempScoreData = [{"activity":"aktivitet1","team":"hold1","time":10},{"activity":"aktivitet2","team":"hold2","time":20},{"activity":"aktivitet3","team":"hold3","time":30},{"activity":"aktivitet4","team":"hold4","time":40}
+    ,{"activity":"aktivitet5","team":"hold1","time":10},{"activity":"aktivitet6","team":"hold2","time":20},{"activity":"aktivitet7","team":"hold3","time":30},{"activity":"aktivitet8","team":"hold4","time":40}
+    ,{"activity":"aktivitet9","team":"hold1","time":10},{"activity":"aktivitet10","team":"hold2","time":20},{"activity":"aktivitet11","team":"hold3","time":30},{"activity":"aktivitet12","team":"hold4","time":40}
+    ,{"activity":"aktivitet13","team":"hold1","time":10},{"activity":"aktivitet14","team":"hold2","time":20},{"activity":"aktivitet15","team":"hold3","time":30},{"activity":"aktivitet16","team":"hold4","time":40}];
+
+
   fs.writeFileSync(staticRoot +'score.json', JSON.stringify(tempScoreData) , 'utf-8');
   return tempScoreData;
 }

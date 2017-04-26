@@ -15,11 +15,11 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
-    this.socketService.on("score_change", (new_score) => {
-      console.log("score change received from server:\n");
-      console.log(new_score);
-      this.score = this.copyArray(new_score);
-      this.oldScore = this.copyArray(new_score);
+    this.socketService.on("score_init", (server_score) => {
+      console.log("score received from server:\n");
+      console.log(server_score);
+      this.score = this.copyArray(server_score);
+      this.oldScore = this.copyArray(server_score);
       }
     )
   }
