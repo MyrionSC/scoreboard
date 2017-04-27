@@ -43,6 +43,12 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     // ,{"activity":"aktivitet5","team":"hold1","time":10},{"activity":"aktivitet6","team":"hold2","time":20},{"activity":"aktivitet7","team":"hold3","time":30},{"activity":"aktivitet8","team":"hold4","time":40}
     // ,{"activity":"aktivitet9","team":"hold1","time":10},{"activity":"aktivitet10","team":"hold2","time":20},{"activity":"aktivitet11","team":"hold3","time":30},{"activity":"aktivitet12","team":"hold4","time":40}
     // ,{"activity":"aktivitet13","team":"hold1","time":10},{"activity":"aktivitet14","team":"hold2","time":20},{"activity":"aktivitet15","team":"hold3","time":30},{"activity":"aktivitet16","team":"hold4","time":40}];
+    //
+    // this.changeView();
+    // setInterval(() => {
+    //   this.onFirstPage = !this.onFirstPage;
+    //   this.changeView();
+    // }, this.changeTimer * 1000);
   }
   ngOnDestroy() {
     this.socketService.off('score_change');
@@ -51,9 +57,9 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
   // change view logic. We are assuming that there are only two pages of score
   changeView(): void {
     if (this.onFirstPage) {
-      this.shownScore = this.score.slice(0, this.listSize - 1);
+      this.shownScore = this.score.slice(0, this.listSize);
     } else {
-      this.shownScore = this.score.slice(this.listSize, this.score.length - 1);
+      this.shownScore = this.score.slice(this.listSize, this.score.length);
     }
   }
 
