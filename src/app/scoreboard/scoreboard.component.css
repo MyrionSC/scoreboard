@@ -6,9 +6,9 @@
 }
 .contentContainer {
   margin: 15px;
-  /*padding: 10px;*/
   border: 1px black solid;
   background: #ffffff;
+  background-image: url("./../../assets/images/marmor.jpg");
 }
 .contentHeader {
   margin-left: 0;
