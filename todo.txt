@@ -1,8 +1,27 @@
+todo
+    top 3 istedet for highscore
+        create new data
+            - Activity
+            - Goldteam
+            - Goldtime
+            - SilverTeam
+            - SilverTime
+            - BronzeTeam
+            - BronzeTime
+        Create interface scoreboard
+          Find Gold, Silver, Bronze medals
+          Bind new data
+
+        Create interface Admin
+          new data
+          maybe textfield with post admins name, that isn't sent along to the scoreboard, so I can see which post I am receiving messages from
+
+        Server: new test data
+
+    dags plan transition
+      - create third transition where a pdf or image is shown of the schedule for the day
 
 
-client
-  score page temp layout
-  test bootstrap style elements for layout
 
 
-server
+  Could have: Funny Jeppe animation to be run every 3 min or so

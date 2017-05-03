@@ -4,9 +4,22 @@
 </div>
 <div class="contentContainer">
   <div class="row contentHeader">
-    <div class="col-xs-4 content" style="color: white">Sport</div>
-    <div class="col-xs-4 content" style="color: white">Hold</div>
-    <div class="col-xs-4 content" style="color: white">Score</div>
+    <div class="col-xs-2 content" style="color: white">Sport</div>
+    <div class="col-xs-3 content" style="color: white">
+      <div>
+        <div>
+          Guld
+          <img src="../../assets/images/goldmedal.png" style="height: 32px;">
+        </div>
+        <div style="display: inline-flex;">
+          <div style="font-size: 20px;">Hold</div>
+          <div style="font-size: 20px;">Score</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-3 content" style="color: white">Hold</div>
+    <div class="col-xs-3 content" style="color: white">Score</div>
+    <div class="col-xs-1 content"></div>
   </div>
   <div class="row contentRow" *ngFor="let s of shownScore;">
     <div class="col-xs-4 content">{{s.activity}}</div>
