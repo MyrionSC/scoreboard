@@ -10,17 +10,32 @@
   background: #ffffff;
   background-image: url("./../../assets/images/marmor.jpg");
 }
-.contentHeader {
+.contentHeaderContainer {
   margin-left: 0;
   margin-right: 0;
   padding: 8px;
   background: #000;
+  font-size: 36px;
+  color: #ffffff;
+}
+.contentHeader {
+  text-align: center;
+  padding-right: 50px;
+}
+.contentSubHeader{
+  padding-left: 20px;
+  margin-top: -12px;
 }
 .contentHeaderText {
   color: white;
 }
 .contentRow {
   padding: 10px;
+}
+.contentCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .content {
   font-size: 28px;

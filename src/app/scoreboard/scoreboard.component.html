@@ -3,49 +3,62 @@
   <h1 style="margin-left: 20px;">NIH Special Olympics Scoretavle</h1>
 </div>
 <div class="contentContainer">
-  <div class="row contentHeader">
-    <div class="col-xs-2 content" style="color: white">Sport</div>
-    <div class="col-xs-3 content" style="color: white">
-      <div style="text-align: center;">
+  <div class="row contentHeaderContainer">
+    <div class="col-xs-2" style="font-size: 48px;">Sport</div>
+    <div class="col-xs-10 row">
+      <div class="col-xs-4">
         <div>
-          Guld
-          <img src="../../assets/images/goldmedal.png" style="height: 32px;">
+          <div class="contentHeader">
+            Guld
+            <img src="../../assets/images/goldmedal.png" style="height: 32px;">
+          </div>
+          <div style="display: flex;">
+            <div class="contentSubHeader" style="width: 60%">Hold</div>
+            <div class="contentSubHeader" style="width: 40%;">Score</div>
+          </div>
         </div>
-        <div style="display: flex;">
-          <div style="font-size: 24px; margin: auto;">Hold</div>
-          <div style="font-size: 24px; margin: auto;">Score</div>
+      </div>
+      <div class="col-xs-4">
+        <div>
+          <div class="contentHeader">
+            Sølv
+            <img src="../../assets/images/silvermedal.png" style="height: 32px;">
+          </div>
+          <div style="display: flex;">
+            <div class="contentSubHeader" style="width: 60%">Hold</div>
+            <div class="contentSubHeader" style="width: 40%;">Score</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div>
+          <div class="contentHeader">
+            Bronze
+            <img src="../../assets/images/bronzemedal.png" style="height: 32px;">
+          </div>
+          <div style="display: flex;">
+            <div class="contentSubHeader" style="width: 60%">Hold</div>
+            <div class="contentSubHeader" style="width: 40%;">Score</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-xs-3 content" style="color: white">
-      <div style="text-align: center;">
-        <div>
-          Sølv
-          <img src="../../assets/images/silvermedal.png" style="height: 32px;">
-        </div>
-        <div style="display: flex;">
-          <div style="font-size: 24px; margin: auto;">Hold</div>
-          <div style="font-size: 24px; margin: auto;">Score</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-3 content" style="color: white">
-      <div style="text-align: center;">
-        <div>
-          Bronze
-          <img src="../../assets/images/bronzemedal.png" style="height: 32px;">
-        </div>
-        <div style="display: flex;">
-          <div style="font-size: 24px; margin: auto;">Hold</div>
-          <div style="font-size: 24px; margin: auto;">Score</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-1 content"></div>
   </div>
-  <div class="row contentRow" *ngFor="let s of shownScore;">
-    <div class="col-xs-4 content">{{s.activity}}</div>
-    <div class="col-xs-4 content">{{s.team}}</div>
-    <div class="col-xs-4 content">{{s.time}}</div>
+  <div class="row contentRow content" *ngFor="let s of shownScore;">
+    <div class="col-xs-2">{{s.activity}}</div>
+    <div class="col-xs-10 row">
+      <div class="col-xs-4" style="display: flex;">
+        <div class="contentCell" style="width: 60%">{{s.goldTeam}}</div>
+        <div class="contentCell" style="width: 40%">{{s.goldScore}}</div>
+      </div>
+      <div class="col-xs-4" style="display: flex;">
+        <div class="contentCell" style="width: 60%">{{s.silverTeam}}</div>
+        <div class="contentCell" style="width: 40%">{{s.silverScore}}</div>
+      </div>
+      <div class="col-xs-4" style="display: flex;">
+        <div class="contentCell" style="width: 60%">{{s.silverTeam}}</div>
+        <div class="contentCell" style="width: 40%">{{s.silverScore}}</div>
+      </div>
+    </div>
   </div>
 </div>

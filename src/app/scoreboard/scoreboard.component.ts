@@ -46,8 +46,8 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
 
     // new testdata:
     this.score = [
-      {"activity": "activity1", "goldTeam": "Gold Team 1", "goldScore": "Gold Score 1", "silverTeam": "Silver Team 1", "silverScore": "Silver Score 1", "bronzeTeam": "Bronze Team 1", "bronzeScore": "Bronze Score 1"},
-      {"activity": "activity2", "goldTeam": "Gold Team 2", "goldScore": "Gold Score 2", "silverTeam": "Silver Team 2", "silverScore": "Silver Score 2", "bronzeTeam": "Bronze Team 2", "bronzeScore": "Bronze Score 2"},
+      {"activity": "activity1", "goldTeam": "Gold blah", "goldScore": "Gold Score 1ssdd", "silverTeam": "Silver Team 1", "silverScore": "Silver Score 1", "bronzeTeam": "Bronze Team 1", "bronzeScore": "Bronze Score 1"},
+      {"activity": "activity2", "goldTeam": "Gold Team 2 sssdddddddddddddddd", "goldScore": "Gol 2", "silverTeam": "Silver Team 2", "silverScore": "Silver Score 2", "bronzeTeam": "Bronze Team 2", "bronzeScore": "Bronze Score 2"},
       {"activity": "activity3", "goldTeam": "Gold Team 3", "goldScore": "Gold Score 3", "silverTeam": "Silver Team 3", "silverScore": "Silver Score 3", "bronzeTeam": "Bronze Team 3", "bronzeScore": "Bronze Score 3"},
       {"activity": "activity4", "goldTeam": "Gold Team 4", "goldScore": "Gold Score 4", "silverTeam": "Silver Team 4", "silverScore": "Silver Score 4", "bronzeTeam": "Bronze Team 4", "bronzeScore": "Bronze Score 4"},
       {"activity": "activity5", "goldTeam": "Gold Team 5", "goldScore": "Gold Score 5", "silverTeam": "Silver Team 5", "silverScore": "Silver Score 5", "bronzeTeam": "Bronze Team 5", "bronzeScore": "Bronze Score 5"},
@@ -66,10 +66,10 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
 
 
     this.changeView();
-    setInterval(() => {
-      this.onFirstPage = !this.onFirstPage;
-      this.changeView();
-    }, this.changeTimer * 1000);
+    // setInterval(() => {
+    //   this.onFirstPage = !this.onFirstPage;
+    //   this.changeView();
+    // }, this.changeTimer * 1000);
   }
   ngOnDestroy() {
     this.socketService.off('score_change');
