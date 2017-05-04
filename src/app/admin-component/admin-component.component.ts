@@ -21,7 +21,7 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
       this.score = this.copyArray(server_score);
       this.oldScore = this.copyArray(server_score);
       }
-    )
+    );
   }
 
   ngOnDestroy () {
@@ -32,8 +32,8 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
     this.score.push(new Activity());
   }
   removeActivity (ac: Activity) {
-    let index: number = this.score.indexOf(ac);
-    if (index != -1) {
+    const index: number = this.score.indexOf(ac);
+    if (index !== -1) {
       this.score.splice(index, 1);
     }
   }

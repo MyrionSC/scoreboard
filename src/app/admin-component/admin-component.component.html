@@ -2,18 +2,26 @@
   Administration for NIH Special Olympics Scoreboard
 </h3>
 
-<div style="width: 600px;">
+<div>
   <div style="display: flex">
-    <div style="width: 200px;">Aktivitet</div>
-    <div style="width: 200px;">Hold</div>
-    <div style="width: 200px;">Score</div>
+    <div class="AdminTextBox">Aktivitet</div>
+    <div class="AdminTextBox">GuldHold</div>
+    <div class="AdminTextBox">GuldScore</div>
+    <div class="AdminTextBox">SølvHold</div>
+    <div class="AdminTextBox">SølvScore</div>
+    <div class="AdminTextBox">BronzeHold</div>
+    <div class="AdminTextBox">BronzeScore</div>
   </div >
   <div style="height: 2px; background: black"></div>
   <div *ngFor="let ac of score;">
     <div style="display: flex; margin-top: 8px; margin-bottom: 8px">
       <input class="AdminTextBox" [(ngModel)]="ac.activity" type="text">
-      <input class="AdminTextBox" [(ngModel)]="ac.team" type="text">
-      <input class="AdminTextBox" [(ngModel)]="ac.time" type="text">
+      <input class="AdminTextBox" [(ngModel)]="ac.goldTeam" type="text">
+      <input class="AdminTextBox" [(ngModel)]="ac.goldScore" type="text">
+      <input class="AdminTextBox" [(ngModel)]="ac.silverTeam" type="text">
+      <input class="AdminTextBox" [(ngModel)]="ac.silverScore" type="text">
+      <input class="AdminTextBox" [(ngModel)]="ac.bronzeTeam" type="text">
+      <input class="AdminTextBox" [(ngModel)]="ac.bronzeScore" type="text">
       <button (click)="removeActivity(ac)">Slet</button>
     </div>
     <div style="height: 1px; background: gray"></div>
