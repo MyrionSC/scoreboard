@@ -1,6 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { SocketService } from '../socket.service';
-import {Activity} from "../activity";
 
 @Component({
   selector: 'app-scoreboard',
@@ -14,9 +13,9 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
   nihlogosrc: string = "assets/images/nihlogo.png";
 
   listSize: number = this.getListSize();
-  changeTimer = 20;
-  onFirstPage = true;
-
+  changeTimer = 5;
+  pageNr = 0;
+  private showPDF = false;
 
   constructor(private socketService: SocketService) {}
 
@@ -28,7 +27,6 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
 
       this.changeView();
       setInterval(() => {
-        this.onFirstPage = !this.onFirstPage;
         this.changeView();
       }, this.changeTimer * 1000);
     });
@@ -62,7 +60,6 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
 
     // this.changeView();
     // setInterval(() => {
-    //   this.onFirstPage = !this.onFirstPage;
     //   this.changeView();
     // }, this.changeTimer * 1000);
   }
@@ -72,11 +69,16 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
 
   // change view logic. We are assuming that there are only two pages of score
   changeView(): void {
-    if (this.onFirstPage) {
+    if (this.pageNr === 0) {
+      this.showPDF = false;
       this.shownScore = this.score.slice(0, this.listSize);
-    } else {
+    } else if (this.pageNr === 1) {
       this.shownScore = this.score.slice(this.listSize, this.score.length);
+    } else { // pageNr is 2
+      // show pdf
+      this.showPDF = true;
     }
+    this.changePageNr();
   }
 
   private getListSize(): number {
@@ -86,6 +88,10 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     return Math.floor(PageHeight / contentHeight) - 1;
   }
 
-
-
+  private changePageNr() {
+    this.pageNr += 1;
+    if (this.pageNr === 3) {
+      this.pageNr = 0;
+    }
+  }
 }
