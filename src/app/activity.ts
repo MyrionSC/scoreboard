@@ -1,4 +1,5 @@
 export class Activity {
+  teamLeader: string = "Navn";
   activity: string = "Aktivitet";
   goldTeam: string = "Hold1";
   goldScore: string = "1";

@@ -1,9 +1,33 @@
 <h3>
   Administration for NIH Special Olympics Scoreboard
 </h3>
+<div style="margin: 10px"></div>
+<div style="height: 1px; background: gray"></div>
+<div style="margin: 10px"></div>
+
+<div>
+  Nyhedstekst:
+  <input class="AdminTextBox" style="width: 500px;" [(ngModel)]="latestNews" type="text">
+  <button class="AdminButton" (click)="pushNews()">Gem nyhed</button>
+</div>
+
+<div style="margin: 10px"></div>
+<div style="height: 1px; background: gray"></div>
+<div style="margin: 10px"></div>
+
+<button class="AdminButton" (click)="addActivity()">
+  Tilføj ny aktivitet
+</button>
+<button class="AdminButton" (click)="saveScore()">
+  Gem
+</button>
+<button class="AdminButton" (click)="revertChanges()">
+  fortryd ændring
+</button>
 
 <div>
   <div style="display: flex">
+    <div class="AdminTextBox">HoldLeder</div>
     <div class="AdminTextBox">Aktivitet</div>
     <div class="AdminTextBox">GuldHold</div>
     <div class="AdminTextBox">GuldScore</div>
@@ -15,6 +39,7 @@
   <div style="height: 2px; background: black"></div>
   <div *ngFor="let ac of score;">
     <div style="display: flex; margin-top: 8px; margin-bottom: 8px">
+      <input class="AdminTextBox" [(ngModel)]="ac.teamLeader" type="text">
       <input class="AdminTextBox" [(ngModel)]="ac.activity" type="text">
       <input class="AdminTextBox" [(ngModel)]="ac.goldTeam" type="text">
       <input class="AdminTextBox" [(ngModel)]="ac.goldScore" type="text">
@@ -28,7 +53,7 @@
   </div>
 </div>
 
-<div style="margin: 20px"></div>
+<div style="margin: 10px"></div>
 
 <button class="AdminButton" (click)="addActivity()">
   Tilføj ny aktivitet

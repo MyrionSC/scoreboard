@@ -1,8 +1,2 @@
 todo
-    dags plan transition
-      - create third transition where a pdf or image is shown of the schedule for the day
-
-
-
-
-  Could have: Funny Jeppe animation to be run every 3 min or so
+  make array in scoreboard to hold news and play them once in a while.

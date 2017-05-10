@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketService } from '../socket.service';
-import {Activity} from "../activity";
+import {Activity} from '../activity';
 
 @Component({
   selector: 'app-admin-component',
@@ -11,12 +11,13 @@ import {Activity} from "../activity";
 export class AdminComponentComponent implements OnInit, OnDestroy {
   private score: Array<Activity>;
   private oldScore: Array<Activity>;
+  private latestNews: String;
 
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
-    this.socketService.on("score_init", (server_score) => {
-      console.log("score received from server:\n");
+    this.socketService.on('score_init', (server_score) => {
+      console.log('score received from server:\n');
       console.log(server_score);
       this.score = this.copyArray(server_score);
       this.oldScore = this.copyArray(server_score);
@@ -25,7 +26,12 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy () {
-    this.socketService.off("score_change");
+    this.socketService.off('score_change');
+  }
+
+  pushNews () {
+    this.socketService.emit('new_news', this.latestNews);
+    this.latestNews = '';
   }
 
   addActivity () {
@@ -39,14 +45,14 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
   }
 
   saveScore():void {
-    console.log("Saving score");
+    console.log('Saving score');
     console.log(this.score);
     this.oldScore = this.copyArray(this.score);
 
-    this.socketService.emit("new_score", this.score)
+    this.socketService.emit('new_score', this.score);
   }
   revertChanges():void {
-    console.log("reverting changes");
+    console.log('reverting changes');
     this.score = this.copyArray(this.oldScore);
   }
 

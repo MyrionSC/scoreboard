@@ -15,7 +15,8 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
   listSize: number = this.getListSize();
   changeTimer = 5;
   pageNr = 0;
-  private showPDF = false;
+  showSchedule = false;
+  latestNews = '';
 
   constructor(private socketService: SocketService) {}
 
@@ -35,28 +36,14 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
       console.log(new_score);
       this.score = new_score;
     });
+    this.socketService.on('new_news', (new_news) => {
+      console.log('new news item received from server: ' + new_news);
+      this.latestNews = new_news;
+    });
 
 
 
-    // new testdata:
-    // this.score = [
-    //   {"activity": "activity1", "goldTeam": "Gold blah", "goldScore": "Gold Score 1ssdd", "silverTeam": "Silver Team 1", "silverScore": "Silver Score 1", "bronzeTeam": "Bronze Team 1", "bronzeScore": "Bronze Score 1"},
-    //   {"activity": "activity2", "goldTeam": "Gold Team 2 sssdddddddddddddddd", "goldScore": "Gol 2", "silverTeam": "Silver Team 2", "silverScore": "Silver Score 2", "bronzeTeam": "Bronze Team 2", "bronzeScore": "Bronze Score 2"},
-    //   {"activity": "activity3", "goldTeam": "Gold Team 3", "goldScore": "Gold Score 3", "silverTeam": "Silver Team 3", "silverScore": "Silver Score 3", "bronzeTeam": "Bronze Team 3", "bronzeScore": "Bronze Score 3"},
-    //   {"activity": "activity4", "goldTeam": "Gold Team 4", "goldScore": "Gold Score 4", "silverTeam": "Silver Team 4", "silverScore": "Silver Score 4", "bronzeTeam": "Bronze Team 4", "bronzeScore": "Bronze Score 4"},
-    //   {"activity": "activity5", "goldTeam": "Gold Team 5", "goldScore": "Gold Score 5", "silverTeam": "Silver Team 5", "silverScore": "Silver Score 5", "bronzeTeam": "Bronze Team 5", "bronzeScore": "Bronze Score 5"},
-    //   {"activity": "activity6", "goldTeam": "Gold Team 6", "goldScore": "Gold Score 6", "silverTeam": "Silver Team 6", "silverScore": "Silver Score 6", "bronzeTeam": "Bronze Team 6", "bronzeScore": "Bronze Score 6"},
-    //   {"activity": "activity7", "goldTeam": "Gold Team 7", "goldScore": "Gold Score 7", "silverTeam": "Silver Team 7", "silverScore": "Silver Score 7", "bronzeTeam": "Bronze Team 7", "bronzeScore": "Bronze Score 7"},
-    //   {"activity": "activity8", "goldTeam": "Gold Team 8", "goldScore": "Gold Score 8", "silverTeam": "Silver Team 8", "silverScore": "Silver Score 8", "bronzeTeam": "Bronze Team 8", "bronzeScore": "Bronze Score 8"},
-    //   {"activity": "activity9", "goldTeam": "Gold Team 9", "goldScore": "Gold Score 9", "silverTeam": "Silver Team 9", "silverScore": "Silver Score 9", "bronzeTeam": "Bronze Team 9", "bronzeScore": "Bronze Score 9"},
-    //   {"activity": "activity10", "goldTeam": "Gold Team 10", "goldScore": "Gold Score 10", "silverTeam": "Silver Team 10", "silverScore": "Silver Score 10", "bronzeTeam": "Bronze Team 10", "bronzeScore": "Bronze Score 10"},
-    //   {"activity": "activity11", "goldTeam": "Gold Team 11", "goldScore": "Gold Score 11", "silverTeam": "Silver Team 11", "silverScore": "Silver Score 11", "bronzeTeam": "Bronze Team 11", "bronzeScore": "Bronze Score 11"},
-    //   {"activity": "activity12", "goldTeam": "Gold Team 12", "goldScore": "Gold Score 12", "silverTeam": "Silver Team 12", "silverScore": "Silver Score 12", "bronzeTeam": "Bronze Team 12", "bronzeScore": "Bronze Score 12"},
-    //   {"activity": "activity13", "goldTeam": "Gold Team 13", "goldScore": "Gold Score 13", "silverTeam": "Silver Team 13", "silverScore": "Silver Score 13", "bronzeTeam": "Bronze Team 13", "bronzeScore": "Bronze Score 13"},
-    //   {"activity": "activity14", "goldTeam": "Gold Team 14", "goldScore": "Gold Score 14", "silverTeam": "Silver Team 14", "silverScore": "Silver Score 14", "bronzeTeam": "Bronze Team 14", "bronzeScore": "Bronze Score 14"},
-    //   {"activity": "activity15", "goldTeam": "Gold Team 15", "goldScore": "Gold Score 15", "silverTeam": "Silver Team 15", "silverScore": "Silver Score 15", "bronzeTeam": "Bronze Team 15", "bronzeScore": "Bronze Score 15"},
-    //   {"activity": "activity16", "goldTeam": "Gold Team 16", "goldScore": "Gold Score 16", "silverTeam": "Silver Team 16", "silverScore": "Silver Score 16", "bronzeTeam": "Bronze Team 16", "bronzeScore": "Bronze Score 16"}
-    // ];
+    // get some testdata from server.js if necessary
 
     // this.changeView();
     // setInterval(() => {
@@ -68,15 +55,15 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
   }
 
   // change view logic. We are assuming that there are only two pages of score
-  changeView(): void {
+  private changeView(): void {
     if (this.pageNr === 0) {
-      this.showPDF = false;
+      this.showSchedule = false;
       this.shownScore = this.score.slice(0, this.listSize);
     } else if (this.pageNr === 1) {
       this.shownScore = this.score.slice(this.listSize, this.score.length);
     } else { // pageNr is 2
       // show pdf
-      this.showPDF = true;
+      this.showSchedule = true;
     }
     this.changePageNr();
   }
