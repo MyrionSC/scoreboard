@@ -13,6 +13,7 @@ app.use(express.static(staticRoot));
 // read score data into memory, if file exists
 var score = fs.existsSync(staticRoot + "score.json") ?
   eval(JSON.parse(fs.readFileSync(staticRoot + "score.json", 'utf8'))) : createScoreFile();
+var newsList = [];
 
 //// express
 app.use(function(req, res, next){
@@ -36,10 +37,22 @@ app.use(function(req, res, next){
 //// socket.io
 io.on('connection', function(socket){
   console.log('a socket connected');
-  socket.emit('score_init', score); // init scoreboard client with current score
+
+  var data = {
+    'score': score,
+    'news': newsList
+  }
+
+  socket.emit('init', data); // init scoreboard client with current score and news
 
   socket.on('new_news', function(new_news) {
     console.log('new news item received: ' + new_news);
+
+    newsList.unshift(new_news);
+    if (newsList.length > 4) {
+      newsList.pop();
+    }
+
     io.emit('new_news', new_news);
   });
 

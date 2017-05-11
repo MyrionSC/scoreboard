@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ElementRef, Renderer, ViewChild} from '@angular/core';
 import { SocketService } from '../socket.service';
 
 @Component({
@@ -10,48 +10,56 @@ import { SocketService } from '../socket.service';
 export class ScoreboardComponent implements OnInit, OnDestroy {
   score: Array<any>;
   shownScore: Array<any>;
-  nihlogosrc: string = "assets/images/nihlogo.png";
+  nihlogosrc = 'assets/images/nihlogo.png';
 
   listSize: number = this.getListSize();
-  changeTimer = 5;
+  changeTimer = 20;
   pageNr = 0;
   showSchedule = false;
-  latestNews = '';
 
-  constructor(private socketService: SocketService) {}
+  newsReelList: Array<String> = [];
+  newsReelContent = '';
+  @ViewChild('newsReelItem') newsReelEle: ElementRef;
+  private newsReelEleLeft = 0;
+  private newsReelEleLeftString = '0px';
+  private newsInterval: any;
+
+  constructor(private socketService: SocketService, private renderer: Renderer) {}
 
   ngOnInit() {
-    this.socketService.on('score_init', (server_score) => {
-      console.log("score change received from server:\n");
-      console.log(server_score);
-      this.score = server_score;
+    this.socketService.on('init', (data) => {
+      console.log('score change received from server:\n');
+      console.log(data);
+      this.score = data.score;
+      this.newsReelList = data.news;
 
       this.changeView();
-      setInterval(() => {
-        this.changeView();
-      }, this.changeTimer * 1000);
+      this.startRotation();
+      this.executeNewsReel();
     });
     this.socketService.on('score_change', (new_score) => {
-      console.log("score change received from server:\n");
+      console.log('score change received from server:\n');
       console.log(new_score);
       this.score = new_score;
     });
     this.socketService.on('new_news', (new_news) => {
       console.log('new news item received from server: ' + new_news);
-      this.latestNews = new_news;
+      this.newsReelList.unshift(new_news);
+      if (this.newsReelList.length > 4) { // there should only be four elements in news reel
+        this.newsReelList.pop();
+      }
     });
-
-
-
-    // get some testdata from server.js if necessary
-
-    // this.changeView();
-    // setInterval(() => {
-    //   this.changeView();
-    // }, this.changeTimer * 1000);
   }
+
   ngOnDestroy() {
     this.socketService.off('score_change');
+  }
+
+  private startRotation (): void {
+    // rotation interval
+    setInterval(() => {
+      this.changeView();
+    }, this.changeTimer * 1000);
   }
 
   // change view logic. We are assuming that there are only two pages of score
@@ -62,7 +70,6 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     } else if (this.pageNr === 1) {
       this.shownScore = this.score.slice(this.listSize, this.score.length);
     } else { // pageNr is 2
-      // show pdf
       this.showSchedule = true;
     }
     this.changePageNr();
@@ -70,8 +77,8 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
 
   private getListSize(): number {
     // get pagelength
-    let PageHeight: number = window.screen.height - 200;
-    let contentHeight = 60;
+    const PageHeight: number = window.screen.height - 200;
+    const contentHeight = 60;
     return Math.floor(PageHeight / contentHeight) - 1;
   }
 
@@ -79,6 +86,41 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     this.pageNr += 1;
     if (this.pageNr === 3) {
       this.pageNr = 0;
+    }
+  }
+
+  private executeNewsReel() {
+    if (this.newsReelList.length !== 0) {
+      // init element with text from newsReelArray
+      this.newsReelContent += '*          ';
+      for (const item of this.newsReelList) {
+        this.newsReelContent += item;
+        this.newsReelContent += '          *          ';
+      }
+
+      // place it length plus a few pixel to the left, so it starts outside the screen
+      const len = this.newsReelContent.length * 20; // a nice approximation I think :)
+      this.newsReelEleLeft = 0 - len - 10;
+      this.newsReelEleLeftString = this.newsReelEleLeft + 'px';
+
+      // start moving it across the screen
+      this.newsInterval = setInterval(() => {
+        this.newsReelEleLeft += 1;
+        this.newsReelEleLeftString = this.newsReelEleLeft + 'px';
+
+        // end newsreel when content is beyond screen
+        if (this.newsReelEleLeft > window.innerWidth) {
+          this.newsReelContent = '';
+          clearInterval(this.newsInterval);
+
+          // start new newsreel
+          this.executeNewsReel();
+        }
+      }, 10);
+    } else {
+      setTimeout(() => {
+        this.executeNewsReel();
+      }, 10000);
     }
   }
 }

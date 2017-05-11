@@ -1,2 +1,4 @@
 todo
   make array in scoreboard to hold news and play them once in a while.
+  change test data to resemble real data
+  change font size to slightly smaller

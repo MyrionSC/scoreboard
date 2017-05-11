@@ -8,4 +8,5 @@ body {
   background: #eee;
   padding: 10px;
   font-family: greek;
+  overflow: hidden;
 }

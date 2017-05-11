@@ -15,7 +15,7 @@
   margin-right: 0;
   padding: 8px;
   background: #000;
-  font-size: 36px;
+  font-size: 28px;
   color: #ffffff;
 }
 .contentHeader {
@@ -38,7 +38,7 @@
   white-space: nowrap;
 }
 .content {
-  font-size: 28px;
+  font-size: 24px;
 }
 .newsReelContainer {
   width: 100%;
@@ -49,9 +49,10 @@
   background: black
 }
 .newsReelItem {
-  font-size: 24px;
+  font-size: 20px;
   color: #fff;
   position:absolute;
+  white-space: pre;
   bottom: 0;
   left: 0;
 }

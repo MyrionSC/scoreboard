@@ -16,11 +16,11 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
   constructor(private socketService: SocketService) { }
 
   ngOnInit() {
-    this.socketService.on('score_init', (server_score) => {
+    this.socketService.on('init', (data) => {
       console.log('score received from server:\n');
-      console.log(server_score);
-      this.score = this.copyArray(server_score);
-      this.oldScore = this.copyArray(server_score);
+      console.log(data);
+      this.score = this.copyArray(data.score);
+      this.oldScore = this.copyArray(data.score);
       }
     );
   }
@@ -44,7 +44,7 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveScore():void {
+  saveScore(): void {
     console.log('Saving score');
     console.log(this.score);
     this.oldScore = this.copyArray(this.score);
