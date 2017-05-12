@@ -2,7 +2,6 @@
 @font-face {
   font-family: 'greek';
   src: url('assets/fonts/DIOGENES.ttf')  format('truetype');
-  /*font-weight: bold;*/
 }
 body {
   background: #eee;

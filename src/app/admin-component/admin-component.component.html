@@ -5,6 +5,17 @@
 <div style="height: 1px; background: gray"></div>
 <div style="margin: 10px"></div>
 
+<div style="display: flex;">
+  Start Rotation
+  <button style="margin-left: 20px;" (click)="startStopRotation()">Start / Stop Rotation</button>
+  <div *ngIf="rotationStarted" style="color: green; margin-left: 30px;">Rotation is started</div>
+  <div *ngIf="!rotationStarted" style="color: red; margin-left: 30px;">Rotation is stopped</div>
+</div>
+
+<div style="margin: 10px"></div>
+<div style="height: 1px; background: gray"></div>
+<div style="margin: 10px"></div>
+
 <div>
   Nyhedstekst:
   <input class="AdminTextBox" style="width: 500px;" [(ngModel)]="latestNews" type="text">

@@ -12,6 +12,7 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
   private score: Array<Activity>;
   private oldScore: Array<Activity>;
   private latestNews: String;
+  private rotationStarted = false;
 
   constructor(private socketService: SocketService) { }
 
@@ -42,6 +43,11 @@ export class AdminComponentComponent implements OnInit, OnDestroy {
     if (index !== -1) {
       this.score.splice(index, 1);
     }
+  }
+
+  startStopRotation() {
+    this.rotationStarted = !this.rotationStarted;
+    this.socketService.emit('rotation_change', this.rotationStarted);
   }
 
   saveScore(): void {

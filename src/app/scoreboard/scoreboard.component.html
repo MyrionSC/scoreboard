@@ -1,8 +1,8 @@
-<div *ngIf="!showSchedule" class="header">
+<div *ngIf="rotationStarted && !showSchedule" class="header">
   <img [src]="nihlogosrc" style="height: 64px;">
   <h1 style="margin-left: 20px;">NIH Special Olympics Scoretavle</h1>
 </div>
-<div *ngIf="!showSchedule" class="contentContainer">
+<div *ngIf="rotationStarted && !showSchedule" class="contentContainer">
   <div class="row contentHeaderContainer">
     <div class="col-xs-2" style="font-size: 40px;">Sport</div>
     <div class="col-xs-10 row">
@@ -64,7 +64,7 @@
 </div>
 
 <!-- program picture-->
-<div *ngIf="showSchedule" style="position: absolute; left: 50%; top: 0; height: calc(100% - 30px)">
+<div *ngIf="!rotationStarted || showSchedule" style="position: absolute; left: 50%; top: 0; height: calc(100% - 30px)">
   <img  style="position: relative; left: -50%; height: 100%;" src="../../assets/images/program.png">
 </div>
 

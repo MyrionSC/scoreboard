@@ -16,6 +16,7 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
   changeTimer = 20;
   pageNr = 0;
   showSchedule = false;
+  rotationStarted = false;
 
   newsReelList: Array<String> = [];
   newsReelContent = '';
@@ -41,6 +42,10 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
       console.log('score change received from server:\n');
       console.log(new_score);
       this.score = new_score;
+    });
+    this.socketService.on('rotation_change', (rotation_status) => {
+      console.log('new rotation status received from server: ' + rotation_status);
+      this.rotationStarted = rotation_status;
     });
     this.socketService.on('new_news', (new_news) => {
       console.log('new news item received from server: ' + new_news);
