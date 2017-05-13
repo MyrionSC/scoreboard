@@ -88,7 +88,7 @@ io.on('connection', function(socket){
 function createScoreFile() {
   var tempScoreData = [
     {"teamLeader": "Anlo + Anne", "activity": "Dart", "goldTeam": "Gold blah", "goldScore": "Gold Score 1ssdd", "silverTeam": "Silver Team 1", "silverScore": "Silver Score 1", "bronzeTeam": "Bronze Team 1", "bronzeScore": "Bronze Score 1"},
-    {"teamLeader": "Bülow + Iversen", "activity": "Sandslot", "goldTeam": "Gold Team 2 sssdddddddddddddddd", "goldScore": "Gol 2", "silverTeam": "Silver Team 2", "silverScore": "Silver Score 2", "bronzeTeam": "Bronze Team 2", "bronzeScore": "Bronze Score 2"},
+    {"teamLeader": "Bülow", "activity": "Sandslot", "goldTeam": "Gold Team 2 sssdddddddddddddddd", "goldScore": "Gol 2", "silverTeam": "Silver Team 2", "silverScore": "Silver Score 2", "bronzeTeam": "Bronze Team 2", "bronzeScore": "Bronze Score 2"},
     {"teamLeader": "Esma", "activity": "Langrend", "goldTeam": "Gold Team 3", "goldScore": "Gold Score 3", "silverTeam": "Silver Team 3", "silverScore": "Silver Score 3", "bronzeTeam": "Bronze Team 3", "bronzeScore": "Bronze Score 3"},
     {"teamLeader": "Bur", "activity": "Blindebold", "goldTeam": "Gold Team 4", "goldScore": "Gold Score 4", "silverTeam": "Silver Team 4", "silverScore": "Silver Score 4", "bronzeTeam": "Bronze Team 4", "bronzeScore": "Bronze Score 4"},
     {"teamLeader": "Garde", "activity": "Dressur", "goldTeam": "Gold Team 5", "goldScore": "Gold Score 5", "silverTeam": "Silver Team 5", "silverScore": "Silver Score 5", "bronzeTeam": "Bronze Team 5", "bronzeScore": "Bronze Score 5"},
@@ -100,6 +100,7 @@ function createScoreFile() {
     {"teamLeader": "Morten", "activity": "Skak", "goldTeam": "Gold Team 11", "goldScore": "Gold Score 11", "silverTeam": "Silver Team 11", "silverScore": "Silver Score 11", "bronzeTeam": "Bronze Team 11", "bronzeScore": "Bronze Score 11"},
     {"teamLeader": "Daniel", "activity": "Klatring", "goldTeam": "Gold Team 12", "goldScore": "Gold Score 12", "silverTeam": "Silver Team 12", "silverScore": "Silver Score 12", "bronzeTeam": "Bronze Team 12", "bronzeScore": "Bronze Score 12"},
     {"teamLeader": "Ida", "activity": "Boldspil", "goldTeam": "Gold Team 13", "goldScore": "Gold Score 13", "silverTeam": "Silver Team 13", "silverScore": "Silver Score 13", "bronzeTeam": "Bronze Team 13", "bronzeScore": "Bronze Score 13"},
+    {"teamLeader": "Iversen", "activity": "Skiskydning", "goldTeam": "Gold Team 13", "goldScore": "Gold Score 13", "silverTeam": "Silver Team 13", "silverScore": "Silver Score 13", "bronzeTeam": "Bronze Team 13", "bronzeScore": "Bronze Score 13"}
   ];
 
   fs.writeFileSync(staticRoot +'score.json', JSON.stringify(tempScoreData) , 'utf-8');

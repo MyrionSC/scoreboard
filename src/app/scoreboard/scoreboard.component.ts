@@ -33,10 +33,12 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
       console.log(data);
       this.score = data.score;
       this.newsReelList = data.news;
+      this.rotationStarted = data.rotationStarted;
 
       this.changeView();
       this.startRotation();
       this.executeNewsReel();
+      this.startReloadInterval();
     });
     this.socketService.on('score_change', (new_score) => {
       console.log('score change received from server:\n');
@@ -105,16 +107,16 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
 
       // place it length plus a few pixel to the left, so it starts outside the screen
       const len = this.newsReelContent.length * 20; // a nice approximation I think :)
-      this.newsReelEleLeft = 0 - len - 10;
+      this.newsReelEleLeft = window.innerWidth;
       this.newsReelEleLeftString = this.newsReelEleLeft + 'px';
 
       // start moving it across the screen
       this.newsInterval = setInterval(() => {
-        this.newsReelEleLeft += 1;
+        this.newsReelEleLeft -= 1;
         this.newsReelEleLeftString = this.newsReelEleLeft + 'px';
 
         // end newsreel when content is beyond screen
-        if (this.newsReelEleLeft > window.innerWidth) {
+        if (this.newsReelEleLeft + len < 0) {
           this.newsReelContent = '';
           clearInterval(this.newsInterval);
 
@@ -125,7 +127,13 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     } else {
       setTimeout(() => {
         this.executeNewsReel();
-      }, 10000);
+      }, 1000);
     }
+  }
+
+  private startReloadInterval() {
+    setTimeout(() => {
+      location.reload();
+    }, 20 * 60 * 1000);
   }
 }
