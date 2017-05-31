@@ -1,3 +1,56 @@
+<div class="header">
+  <img [src]="nihlogosrc" style="height: 64px;">
+  <h1 style="margin-left: 20px;">NIH Partners Event Scoretavle</h1>
+</div>
+
+<!-- scores -->
+<div style="margin: 40px;">
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4 content">{{score.person1Navn}}</div>
+    <div class="col-xs-4 content">{{score.person1Score}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4 content">{{score.person2Navn}}</div>
+    <div class="col-xs-4 content">{{score.person2Score}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4 content">{{score.person3Navn}}</div>
+    <div class="col-xs-4 content">{{score.person3Score}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4 content">{{score.person4Navn}}</div>
+    <div class="col-xs-4 content">{{score.person4Score}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-4 content">{{score.antalSpilTekst}}</div>
+    <div class="col-xs-4 content">{{score.antalSpilNummer}}</div>
+  </div>
+</div>
+
+<!--<div>-->
+  <!--{{score.person1Navn}}-->
+  <!--{{score.person1Score}}-->
+  <!--{{score.person2Navn}}-->
+  <!--{{score.person2Score}}-->
+  <!--{{score.person3Navn}}-->
+  <!--{{score.person3Score}}-->
+  <!--{{score.person4Navn}}-->
+  <!--{{score.person4Score}}-->
+  <!--{{score.antalSpilTekst}}-->
+  <!--{{score.antalSpilNummer}}-->
+<!--</div>-->
+
+<!-- News reel shower -->
+<div class="newsReelContainer"></div>
+<div #newsReelItem class="newsReelItem" [style.left]="newsReelEleLeftString" [innerHTML]="newsReelContent"></div>
+
+
+<!--
 <div *ngIf="rotationStarted && !showSchedule" class="header">
   <img [src]="nihlogosrc" style="height: 64px;">
   <h1 style="margin-left: 20px;">NIH Special Olympics Scoretavle</h1>
@@ -6,7 +59,7 @@
   <div class="row contentHeaderContainer">
     <div class="col-xs-2" style="font-size: 40px;">Sport</div>
     <div class="col-xs-10 row">
-      <div class="col-xs-4">
+      <div class="col-xs-4 content">
         <div>
           <div class="contentHeader">
             Guld
@@ -18,7 +71,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-4">
+      <div class="col-xs-4 content">
         <div>
           <div class="contentHeader">
             Sølv
@@ -30,7 +83,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-4">
+      <div class="col-xs-4 content">
         <div>
           <div class="contentHeader">
             Bronze
@@ -47,15 +100,15 @@
   <div class="row contentRow content" *ngFor="let s of shownScore;">
     <div class="col-xs-2">{{s.activity}}</div>
     <div class="col-xs-10 row">
-      <div class="col-xs-4" style="display: flex;">
+      <div class="col-xs-4 content" style="display: flex;">
         <div class="contentCell" style="width: 60%">{{s.goldTeam}}</div>
         <div class="contentCell" style="width: 40%">{{s.goldScore}}</div>
       </div>
-      <div class="col-xs-4" style="display: flex;">
+      <div class="col-xs-4 content" style="display: flex;">
         <div class="contentCell" style="width: 60%">{{s.silverTeam}}</div>
         <div class="contentCell" style="width: 40%">{{s.silverScore}}</div>
       </div>
-      <div class="col-xs-4" style="display: flex;">
+      <div class="col-xs-4 content" style="display: flex;">
         <div class="contentCell" style="width: 60%">{{s.bronzeTeam}}</div>
         <div class="contentCell" style="width: 40%">{{s.bronzeScore}}</div>
       </div>
@@ -63,11 +116,12 @@
   </div>
 </div>
 
-<!-- program picture-->
+&lt;!&ndash; program picture&ndash;&gt;
 <div *ngIf="!rotationStarted || showSchedule" style="position: absolute; left: 50%; top: 0; height: calc(100% - 30px)">
   <img  style="position: relative; left: -50%; height: 100%;" src="../../assets/images/program.png">
 </div>
 
-<!--news reel shower-->
+&lt;!&ndash;news reel shower&ndash;&gt;
 <div class="newsReelContainer"></div>
 <div #newsReelItem class="newsReelItem" [style.left]="newsReelEleLeftString" [innerHTML]="newsReelContent"></div>
+-->

@@ -1,5 +1,73 @@
 <h3>
-  Administration for NIH Special Olympics Scoreboard
+  Administration for Det Store Partners Event!
+</h3>
+
+<div style="margin: 10px"></div>
+<div style="height: 1px; background: gray"></div>
+<div style="margin: 10px"></div>
+
+<div>
+  Nyhedstekst:
+  <input class="AdminTextBox" style="width: 800px;" [(ngModel)]="news" type="text">
+  <button class="AdminButton" (click)="pushNews()">Gem nyhed</button>
+</div>
+
+<div style="margin: 10px"></div>
+<div style="height: 1px; background: gray"></div>
+<div style="margin: 10px"></div>
+
+<div>
+  <div style="display: flex">
+    <div class="AdminTextBox">Person</div>
+    <div class="AdminTextBox">Score</div>
+  </div >
+  <div style="height: 2px; background: black"></div>
+  <div>
+    <div style="display: flex; margin-top: 8px; margin-bottom: 8px">
+      <input class="AdminTextBox" [(ngModel)]="score.person1Navn" type="text">
+      <input class="AdminTextBox" [(ngModel)]="score.person1Score" type="text">
+    </div>
+    <div style="height: 1px; background: gray"></div>
+    <div style="display: flex; margin-top: 8px; margin-bottom: 8px">
+      <input class="AdminTextBox" [(ngModel)]="score.person2Navn" type="text">
+      <input class="AdminTextBox" [(ngModel)]="score.person2Score" type="text">
+    </div>
+    <div style="height: 1px; background: gray"></div>
+    <div style="display: flex; margin-top: 8px; margin-bottom: 8px">
+      <input class="AdminTextBox" [(ngModel)]="score.person3Navn" type="text">
+      <input class="AdminTextBox" [(ngModel)]="score.person3Score" type="text">
+    </div>
+    <div style="height: 1px; background: gray"></div>
+    <div style="display: flex; margin-top: 8px; margin-bottom: 8px">
+      <input class="AdminTextBox" [(ngModel)]="score.person4Navn" type="text">
+      <input class="AdminTextBox" [(ngModel)]="score.person4Score" type="text">
+    </div>
+    <div style="height: 1px; background: gray"></div>
+  </div>
+</div>
+
+<button class="AdminButton" (click)="saveScore()">
+  Gem
+</button>
+
+<div style="margin: 10px"></div>
+<div style="height: 1px; background: gray"></div>
+<div style="margin: 10px"></div>
+
+<h2>Antal spil spillet</h2>
+
+<div style="display: flex; margin-top: 8px; margin-bottom: 8px">
+  <input class="AdminTextBox" [(ngModel)]="score.antalSpilTekst" type="text">
+  <input class="AdminTextBox" [(ngModel)]="score.antalSpilNummer" type="text">
+</div>
+
+<button class="AdminButton" (click)="saveScore()">
+  Gem
+</button>
+
+<!--
+<h3>
+  newstion for NIH Special Olympics Scoreboard
 </h3>
 <div style="margin: 10px"></div>
 <div style="height: 1px; background: gray"></div>
@@ -75,3 +143,4 @@
 <button class="AdminButton" (click)="revertChanges()">
   fortryd ændring
 </button>
+-->
