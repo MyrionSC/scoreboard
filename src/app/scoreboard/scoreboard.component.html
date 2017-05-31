@@ -1,34 +1,45 @@
-<div class="header">
-  <img [src]="nihlogosrc" style="height: 64px;">
-  <h1 style="margin-left: 20px;">NIH Partners Event Scoretavle</h1>
+<div class="bgimg"></div>
+
+<div style="text-align: center;">
+  <div style="display: inline-block;">
+    <div class="header">
+      <img [src]="nihlogosrc" style="height: 64px;">
+      <h1 style="margin-left: 20px;">NIH Partners Event Scoretavle</h1>
+    </div>
+  </div>
 </div>
 
 <!-- scores -->
-<div style="margin: 40px;">
+<div style="margin-top: 70px;">
   <div class="row">
     <div class="col-xs-2"></div>
-    <div class="col-xs-4 content">{{score.person1Navn}}</div>
+    <div class="col-xs-6 content">{{score.person1Navn}}</div>
     <div class="col-xs-4 content">{{score.person1Score}}</div>
   </div>
   <div class="row">
     <div class="col-xs-2"></div>
-    <div class="col-xs-4 content">{{score.person2Navn}}</div>
+    <div class="col-xs-6 content">{{score.person2Navn}}</div>
     <div class="col-xs-4 content">{{score.person2Score}}</div>
   </div>
   <div class="row">
     <div class="col-xs-2"></div>
-    <div class="col-xs-4 content">{{score.person3Navn}}</div>
+    <div class="col-xs-6 content">{{score.person3Navn}}</div>
     <div class="col-xs-4 content">{{score.person3Score}}</div>
   </div>
   <div class="row">
     <div class="col-xs-2"></div>
-    <div class="col-xs-4 content">{{score.person4Navn}}</div>
+    <div class="col-xs-6 content">{{score.person4Navn}}</div>
     <div class="col-xs-4 content">{{score.person4Score}}</div>
   </div>
+
+  <div style="margin: 10px"></div>
+  <div style="height: 1px; background: gray"></div>
+  <div style="margin: 10px"></div>
+
   <div class="row">
     <div class="col-xs-2"></div>
-    <div class="col-xs-4 content">{{score.antalSpilTekst}}</div>
-    <div class="col-xs-4 content">{{score.antalSpilNummer}}</div>
+    <div class="col-xs-5 content">{{score.antalSpilTekst}}</div>
+    <div class="col-xs-5 content">{{score.antalSpilNummer}}</div>
   </div>
 </div>
 
@@ -47,7 +58,7 @@
 
 <!-- News reel shower -->
 <div class="newsReelContainer"></div>
-<div #newsReelItem class="newsReelItem" [style.left]="newsReelEleLeftString" [innerHTML]="newsReelContent"></div>
+<div #newsReelItem class="newsReelItem" [style.left]="newsReelEleLeftString" [style.width]="newsReelEleWidth" [innerHTML]="newsReelContent"></div>
 
 
 <!--

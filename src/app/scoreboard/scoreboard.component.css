@@ -4,41 +4,9 @@
   padding: 5px;
   display: inline-flex;
 }
-.contentContainer {
-  margin: 15px;
-  border: 1px black solid;
-  background: #ffffff;
-  background-image: url("./../../assets/images/marmor.jpg");
-}
-.contentHeaderContainer {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 8px;
-  background: #000;
-  font-size: 28px;
-  color: #ffffff;
-}
-.contentHeader {
-  text-align: center;
-  padding-right: 50px;
-}
-.contentSubHeader{
-  padding-left: 20px;
-  margin-top: -12px;
-}
-.contentHeaderText {
-  color: white;
-}
-.contentRow {
-  padding: 10px;
-}
-.contentCell {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 .content {
-  font-size: 24px;
+  font-size: 36px;
+  /*margin: 10px;*/
 }
 .newsReelContainer {
   width: 100%;
@@ -56,3 +24,17 @@
   bottom: 0;
   left: 0;
 }
+.bgimg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("http://www.shopandbox.com/django_media/item_images/1481603499_34__79792__651.png");
+  background-repeat: no-repeat;
+  -webkit-background-size:;
+  background-size: 100%;
+  opacity: 0.10;
+}
+

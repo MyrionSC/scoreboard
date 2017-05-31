@@ -47,6 +47,7 @@ io.on('connection', function(socket){
 
   socket.on('new_news', function(new_news) {
     console.log('new news item received: ' + new_news);
+    news = new_news;
     io.emit('new_news', new_news);
   });
 

@@ -14,9 +14,10 @@ export class ScoreboardComponent implements OnInit {
 
   newsReelContent = '';
   @ViewChild('newsReelItem') newsReelEle: ElementRef;
-  private newsReelEleLeft = 0;
-  private newsReelEleLeftString = '0px';
-  private newsInterval: any;
+  newsReelEleLeft = 0;
+  newsReelEleLeftString = '0px';
+  newsInterval: any;
+
 
   constructor(private socketService: SocketService, private renderer: Renderer) {
     this.score = new Score();
@@ -29,7 +30,7 @@ export class ScoreboardComponent implements OnInit {
       this.score = data.score;
       this.newsReelContent = data.news;
 
-      this.executeNewsReel();
+      // this.executeNewsReel();
       this.startReloadInterval();
     });
     this.socketService.on('score_change', (new_score) => {
@@ -46,7 +47,6 @@ export class ScoreboardComponent implements OnInit {
   private executeNewsReel() {
     if (this.newsReelContent.length !== 0) {
       // place it length plus a few pixel to the left, so it starts outside the screen
-      const len = this.newsReelContent.length * 20; // a nice approximation I think :)
       this.newsReelEleLeft = window.innerWidth;
       this.newsReelEleLeftString = this.newsReelEleLeft + 'px';
 
@@ -56,12 +56,13 @@ export class ScoreboardComponent implements OnInit {
         this.newsReelEleLeftString = this.newsReelEleLeft + 'px';
 
         // end newsreel when content is beyond screen
-        if (this.newsReelEleLeft + len < 0) {
-          this.newsReelContent = '';
+        if (this.newsReelEleLeft + this.newsReelContent.length * 20 < 0) {
           clearInterval(this.newsInterval);
 
           // start new newsreel
-          this.executeNewsReel();
+          setTimeout(() => {
+            this.executeNewsReel();
+          }, 1000);
         }
       }, 10);
     } else {
