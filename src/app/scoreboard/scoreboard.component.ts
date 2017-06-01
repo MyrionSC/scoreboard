@@ -30,7 +30,7 @@ export class ScoreboardComponent implements OnInit {
       this.score = data.score;
       this.newsReelContent = data.news;
 
-      // this.executeNewsReel();
+      this.executeNewsReel();
       this.startReloadInterval();
     });
     this.socketService.on('score_change', (new_score) => {
